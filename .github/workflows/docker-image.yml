@@ -13,6 +13,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout code
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag ht-25:$(date +%s)
+
+    - name: Push the Docker image
+      run: docker push . --file Dockerfile --tag ht-25:$(date +%s)
+
