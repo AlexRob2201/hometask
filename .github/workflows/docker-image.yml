@@ -1,8 +1,8 @@
 name: Build
 
-on:
+on: 
   push:
-    branches: [main]
+    branches: [main1]
 
 env:
   REGISTRY: ghcr.io
@@ -40,14 +40,12 @@ jobs:
     - name: downcase REPO
       run: |
         echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
-        
+
     - name: Build image
       uses: docker/build-push-action@v5
       with:
         push: false
         tags: ${{ env.REGISTRY }}/${{ env.REPO }}:${{ steps.tag_version.outputs.new_tag }}, ${{ env.REGISTRY }}/${{ env.REPO }}:latest
-
-
 
     - name: Build image with tests
       uses: docker/build-push-action@v5
@@ -67,7 +65,7 @@ jobs:
       with:
         push: true
         tags: ${{ env.REGISTRY }}/${{ env.REPO }}:${{ steps.tag_version.outputs.new_tag }}
-
+    
     - name: Test coverage
       run: |
         mkdir coverage

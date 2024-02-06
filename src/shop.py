@@ -1,4 +1,4 @@
-from app import Mysql
+from mysql_connector import Mysql
 
 
 class PetShop(Mysql):
@@ -31,3 +31,4 @@ class PetShop(Mysql):
     
     def delete_shop(self):
         self.query("DROP TABLE pets")
+
