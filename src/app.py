@@ -18,8 +18,19 @@ class MySql:
             print(f'Error during connection: {e}')
             time.sleep(30)
 
+    def query(self, text):
+        self.mysql_cursor.execute(text)
+        try:
+            self.mysql_connect.commit()
+        except Exception:
+            pass
+        try:
+            return self.myql_cursor.fetchall()
+        except Exception:
+            return []
+
 if __name__ == "__main__":
-    host = 'mysql_application'
+    host = 'localhost'
     user = 'root'
     password = 'password'
     database = 'app'
@@ -30,4 +41,3 @@ if __name__ == "__main__":
                         
         except Exception as e:
             print(f'Wait for SQL: {e}')
-
