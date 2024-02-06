@@ -2,7 +2,7 @@ FROM ghcr.io/alexrob2201/hometask:latest
 
 RUN pip3 install coverage
 
-COPY tests /home/mysql/
+COPY tests/ /home/mysql
 RUN groupadd -g 1000 test
 RUN useradd -u 1000 -g 1000 -ms /bin/bash test
 RUN chown -R 1000:1000 /home/mysql
