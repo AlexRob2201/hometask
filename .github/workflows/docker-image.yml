@@ -18,6 +18,6 @@ jobs:
 
       - name: Push the Docker image
         run: |
-          docker tag ht-25:$(date +%s) ${{ github.repository_owner }}/ht-25:latest
-          docker push ${{ github.repository_owner }}/ht-25:latest
+          docker tag ht-25:$(date +%s) alexrob2201/ht-25:latest
+          docker push alexrob2201/ht-25:latest
 
