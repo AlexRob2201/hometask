@@ -1,4 +1,4 @@
-FROM ghcr.io/alexrob2201/hometask:v0.0.6
+FROM ghcr.io/alexrob2201/hometask:latest
 
 RUN pip3 install coverage
 
