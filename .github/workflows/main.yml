@@ -37,7 +37,7 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: downcase REPO
+    - name: downcase REPOSITORY
       run: |
         echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
 
@@ -76,10 +76,10 @@ jobs:
     - name: push coverage
       uses: EndBug/add-and-commit@v9
       with:
-        author_name: Roman Grekov
-        author_email: roman.grekov88@gmail.com
+        author_name: Alex Bukhenko
+        author_email: bukhenko2201@gmail.com
         message: 'Add code coverage report'
-        add: 'coverage'
+        add: 'coverag'
         pull: '-r'
         push: true
 
