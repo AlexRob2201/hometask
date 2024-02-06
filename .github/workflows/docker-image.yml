@@ -14,10 +14,13 @@ jobs:
         uses: actions/checkout@v2
       
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag ht-25:$(date +%s)
+        run: |
+          tag=$(date +%s)
+          docker build . --file Dockerfile --tag alexrob2201/ht-25:$tag
+          docker tag alexrob2201/ht-25:$tag alexrob2201/ht-25:latest
 
       - name: Push the Docker image
         run: |
-          docker tag ht-25:$(date +%s) alexrob2201/ht-25:latest
+          docker push alexrob2201/ht-25:$tag
           docker push alexrob2201/ht-25:latest
 
