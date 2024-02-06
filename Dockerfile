@@ -14,6 +14,8 @@ COPY --chown=mysql:mysql src/ /home/mysql/
 RUN chmod 555 /home/mysql/
 RUN chown -R mysql:mysql /home/mysql
 
+WORKDIR /home/mysql
+
 USER mysql
 
 # Встановлення app.py як точки входу для контейнера
