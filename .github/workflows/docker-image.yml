@@ -7,19 +7,17 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ht-25:$(date +%s)
-
+      - name: Checkout code
+        uses: actions/checkout@v2
       
-    - name: Push the Docker image
-      run: |
-        docker tag ht-25:$(date +%s) ${{ github.repository_owner }}/ht-25:latest
-        docker push ${{ github.repository_owner }}/ht-25:latest
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag ht-25:$(date +%s)
+
+      - name: Push the Docker image
+        run: |
+          docker tag ht-25:$(date +%s) ${{ github.repository_owner }}/ht-25:latest
+          docker push ${{ github.repository_owner }}/ht-25:latest
+
