@@ -1,8 +1,8 @@
 name: Build
 
-on: 
+on:
   push:
-    branches: [main1]
+    branches: [main]
 
 env:
   REGISTRY: ghcr.io
@@ -37,19 +37,16 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: downcase REPOSITORY
+    - name: downcase REPO
       run: |
         echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
-    
-    - name: Build image
-      uses: docker/build-push-action@v5
-      with:
-        push: false
-        tags: ${{ env.REGISTRY }}/${{ env.REPO }}:${{ steps.tag_version.outputs.new_tag }}, ${{ env.REGISTRY }}/${{ env.REPO }}:latest
-
-      - name: Push image
+        
+    - name: Build image and push
       uses: docker/build-push-action@v5
       with:
         push: true
-        tags: ${{ env.REGISTRY }}/${{ env.REPO }}:${{ steps.tag_version.outputs.new_tag }}
-   
+        tags: ${{ env.REGISTRY }}/${{ env.REPO }}:${{ steps.tag_version.outputs.new_tag }}, ${{ env.REGISTRY }}/${{ env.REPO }}:latest
+
+
+
+
