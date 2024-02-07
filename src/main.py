@@ -2,7 +2,7 @@ import mysql.connector
 
 class MySql:
     def __init__(self, host, user, password, database):
-                max_retries = 30
+        max_retries = 30
         retries = 0
         while True:
             try:
