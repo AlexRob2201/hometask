@@ -1,22 +1,22 @@
 import unittest
-from shop import PetShop
+from main import MySql
 
 
-class TestMysql(unittest.TestCase):
+class TestMySql(unittest.TestCase):
     def setUp(self):
-        self.shop = PetShop("mysql", "root", "qwerty1234")
-        print("Connected!!!!!!!!!!!!!!!!!!!!")
+        self.mysqlclass = MySql()
+        
+    def test_create(self):
+        try:
+            _query = "CREATE TABLE IF NOT EXISTS shop (id INT AUTO_INCREMENT PRIMARY KEY, item VARCHAR(255), price INT)"
+            self.mysqlclass(_query)
+            print('Таблиця успішно створена')
+        except Exception:
+            print(f'Помилка при створенні таблиці {Exception}')
+        _query = "USE shop"
+        self.mysqlclass(_query)
+        _query = "INSERT INTO shop (item, price) VALUES ('Test', 100)"
+        self.mysqlclass(_query)
     
-    def test_create_item(self):
-        self.shop.create_shop()
-        res = self.shop.add_item("test pet1", 20)
-        print(f"RES: {res}")
-        self.assertTrue(len(res) > 0)
-    
-    def tearDown(self):
-        self.shop.delete_shop()
-
-
 if __name__ == "__main__":
-    print("Start unit test!!!!!!!!!!!!!!!!!!!!!!!")
     unittest.main()

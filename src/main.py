@@ -1,14 +1,15 @@
-from shop import PetShop
-import sys
+import mysql.connector
 
-
-host = sys.argv[1]
-user = sys.argv[2]
-password = sys.argv[3]
-
-petshop = PetShop(host, user, password)
-petshop.create_shop()
-ids = petshop.add_item("Mikky mouse", 100)
-print(ids)
-for id in ids:
-    res = petshop.delete_item_by_id(id)
+class MySql:
+    def __init__(self, host, user, password, database):
+        try:
+            self.mysql_connect = mysql.connector.connect(
+            host=host,
+            user=user,
+            password=password,
+            database=database
+            )
+            self.mysql_cursor = self.mysql_connect.cursor()
+            print(f'Connect to database {database} successfully')
+        except Exception as e:
+            print(f'Error during connection: {e}')
