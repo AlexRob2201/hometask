@@ -37,27 +37,4 @@ class MyShop(MySql):
         except Exception:
             print(f'При видаленні сталася помилка {Exception}')
     
-    
-if __name__ == "__main__":
-    host = 'mysql_application'
-    user = 'root'
-    password = 'password'
-    database = 'app'
 
-    while True:
-        try:
-            time.sleep(10)
-            db = MySql(host, user, password, database)
-            if db:
-                print('Succesfully connected')            
-        except Exception as e:
-            print(f'Wait for SQL: {e}')
-
-    MyShop.create_shop()
-    
-    MyShop.add_item("item_1", 100)
-    MyShop.add_item("item_2", 200)
-    
-    MyShop.delete_item("item_1")
-    
-    MyShop.delete_shop()
