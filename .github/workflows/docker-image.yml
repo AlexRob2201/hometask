@@ -101,4 +101,4 @@ jobs:
       with:
         tag: ${{ steps.tag_version.outputs.new_tag }}
         artifacts: "test-service.deb"
-        bodyFile: "release-notes.md"
+        bodyFile: "README.md"
