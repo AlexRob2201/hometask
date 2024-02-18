@@ -10,7 +10,8 @@ pipeline {
               script {
               sh """
               #!/bin/bash
-              docker ps
+              docker compose build
+              docker compose up
               """
               }
           }
