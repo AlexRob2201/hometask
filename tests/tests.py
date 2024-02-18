@@ -4,7 +4,7 @@ from main import MySql
 
 class TestMySql(unittest.TestCase):
     def setUp(self):
-        self.mysqlclass = MySql(mysql, root, password)
+        self.mysqlclass = MySql('mysql', 'root', 'password')
         
     def test_create(self):
         try:
