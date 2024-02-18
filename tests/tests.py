@@ -8,8 +8,6 @@ class TestMySql(unittest.TestCase):
         
     def test_create(self):
         try:
-            _query = "CREATE DATABASE shop;'
-            self.mysqlclass(_query)
             _query = "CREATE TABLE IF NOT EXISTS shop (id INT AUTO_INCREMENT PRIMARY KEY, item VARCHAR(255), price INT)"
             self.mysqlclass(_query)
             print('Таблиця успішно створена')
