@@ -14,6 +14,7 @@ class MySql:
                 )   
                 self.mysql_cursor = self.mysql_connect.cursor()
                 print(f'Connect to database successfully')
+                break
             except Exception as e:
                 print(f"Waiting for MySQL...{e}")
                 time.sleep(1)
