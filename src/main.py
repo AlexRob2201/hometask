@@ -23,3 +23,14 @@ class MySql:
                 if retries >= max_retries:
                     print("Unable to connect to MySQL. Exiting.")
                     exit(1)
+    
+    def query(self, text):
+        self.mysql_cursor.execute(text)
+        try:
+            self.mysql_connect.commit()
+        except Exception:
+            pass
+        try:
+            return self.mysql_cursor.fetchall()
+        except Exception:
+            return []

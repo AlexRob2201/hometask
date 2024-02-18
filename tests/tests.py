@@ -1,5 +1,5 @@
 import unittest
-from main import MySql
+from src.main import MySql
 
 
 class TestMySql(unittest.TestCase):
