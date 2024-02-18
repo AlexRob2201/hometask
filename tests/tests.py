@@ -4,10 +4,12 @@ from main import MySql
 
 class TestMySql(unittest.TestCase):
     def setUp(self):
-        self.mysqlclass = MySql()
+        self.mysqlclass = MySql(mysql, root, password)
         
     def test_create(self):
         try:
+            _query = "CREATE DATABASE shop;'
+            self.mysqlclass(_query)
             _query = "CREATE TABLE IF NOT EXISTS shop (id INT AUTO_INCREMENT PRIMARY KEY, item VARCHAR(255), price INT)"
             self.mysqlclass(_query)
             print('Таблиця успішно створена')
