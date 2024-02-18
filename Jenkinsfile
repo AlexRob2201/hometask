@@ -3,7 +3,7 @@ pipeline {
       node {
           label 'ht28' 
         }
-      dockerfile true
+
   }
   stages {
       stage("Stage 1") {
@@ -11,7 +11,7 @@ pipeline {
               script {
               sh """
               #!/bin/bash
-              echo "Hello"
+              echo "hello world"
               """
               }
           }
