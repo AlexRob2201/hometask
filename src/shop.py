@@ -1,40 +1,33 @@
-from main import MySql
-import unittest
-import time
+from mysql_connector import Mysql
 
-class MyShop(MySql):
+
+class PetShop(Mysql):
     def create_shop(self):
-        try:
-            _query = "CREATE TABLE IF NOT EXISTS shop (id INT AUTO_INCREMENT PRIMARY KEY, item VARCHAR(255), price INT)"
-            self.execute_query(_query)
-            print('Таблиця успішно створена')
-        except Exception:
-            print(f'Помилка при створенні таблиці {Exception}')
-        
-    def add_item(self, item, price):
-        try:
-            _query = "INSERT INTO shop (item, price) VALUES (%s, %s)"
-            _values = (item, price)
-            self.execute_query(_query, _values)
-            print('Товар додано')
-        except Exception:
-            print(f'Помилка при додаванні товару {Exception}')
-    
-    def delete_item(self, item):
-        try:
-            _query = "DELETE FROM shop WHERE item = %s"
-            _values = (item,)
-            self.execute_query(_query, _values)
-            print('Товар видалено успішно')
-        except Exception:
-            print(f'При видаленні сталася помилка {Exception}')
-            
-    def delete_shop(self):
-        try:
-            _query = "DROP TABLE IF EXISTS shop"
-            self.execute_query(_query)
-            print('Таблицю видалено успішно')
-        except Exception:
-            print(f'При видаленні сталася помилка {Exception}')
-    
+        query = "CREATE DATABASE IF NOT EXISTS shop"
+        self.query(query)
+        query = "USE shop"
+        self.query(query)
+        query = "CREATE TABLE IF NOT EXISTS pets (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), price INT)"
+        self.query(query)
 
+    def add_item(self, name, price):
+        query = f"INSERT INTO pets (name, price) VALUES ('{name}', {price});"
+        self.query(query)
+        query = f"SELECT id, name FROM pets WHERE name='{name}'"
+        res = self.query(query)
+        ids = []
+        for id_name in res:
+            if id_name[1] == name:
+                ids.append(id_name[0])
+        return ids
+
+    def delete_item(self, name):
+        query = f"DELETE FROM pets WHERE name='{name}';"
+        return self.query(query)
+
+    def delete_item_by_id(self, id):
+        query = f"DELETE FROM pets WHERE id='{id}';"
+        return self.query(query)
+    
+    def delete_shop(self):
+        self.query("DROP TABLE pets")
