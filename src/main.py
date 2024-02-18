@@ -13,7 +13,7 @@ class MySql:
                 #database=database
                 )   
                 self.mysql_cursor = self.mysql_connect.cursor()
-                print(f'Connect to database {database} successfully')
+                print(f'Connect to database successfully')
             except Exception as e:
                 print(f"Waiting for MySQL...{e}")
                 time.sleep(1)
