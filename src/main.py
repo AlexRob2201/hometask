@@ -1,36 +1,42 @@
 import mysql.connector
+import time
 
-class MySql:
-    def __init__(self, host, user, password):
+class Mysql():
+    def __init__(self, host, user, pw):
         max_retries = 30
         retries = 0
+
         while True:
             try:
-                self.mysql_connect = mysql.connector.connect(
-                host=host,
-                user=user,
-                password=password
-                #database=database
-                )   
-                self.mysql_cursor = self.mysql_connect.cursor()
-                print(f'Connect to database successfully')
+                self.mydb = mysql.connector.connect(
+                    host=host,
+                    user=user,
+                    password=pw
+                )
+
+                print("MySQL is ready.")
                 break
-            except Exception as e:
-                print(f"Waiting for MySQL...{e}")
+            except mysql.connector.Error as err:
+                
+                print(f"Waiting for MySQL... ({err})")
                 time.sleep(1)
                 retries += 1
 
                 if retries >= max_retries:
                     print("Unable to connect to MySQL. Exiting.")
                     exit(1)
-    
+
+        self.mycursor = self.mydb.cursor()
+
     def query(self, text):
-        self.mysql_cursor.execute(text)
+        self.mycursor.execute(text)
         try:
-            self.mysql_connect.commit()
+            self.mydb.commit()
         except Exception:
             pass
         try:
-            return self.mysql_cursor.fetchall()
+            return self.mycursor.fetchall()
         except Exception:
             return []
+
+
