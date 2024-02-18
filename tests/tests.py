@@ -1,5 +1,5 @@
 import unittest
-from shop import PetShop
+from src.shop import PetShop
 
 
 class TestMysql(unittest.TestCase):

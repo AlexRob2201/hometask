@@ -1,4 +1,4 @@
-from mysql_connector import Mysql
+from main import Mysql
 
 
 class PetShop(Mysql):
