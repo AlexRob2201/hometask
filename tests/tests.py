@@ -4,7 +4,7 @@ from shop import PetShop
 
 class TestMysql(unittest.TestCase):
     def setUp(self):
-        self.shop = PetShop("mysql", "root", "qwerty1234")
+        self.shop = PetShop("mysql", "root", "password")
         print("Connected!!!!!!!!!!!!!!!!!!!!")
     
     def test_create_item(self):
