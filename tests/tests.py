@@ -16,6 +16,7 @@ class TestMySql(unittest.TestCase):
         _query = "USE shop"
         self.mysqlclass(_query)
         _query = "INSERT INTO shop (item, price) VALUES ('Test', 100)"
+        print('Товар успішно створена')
         self.mysqlclass(_query)
     
 if __name__ == "__main__":

@@ -23,11 +23,11 @@ pipeline {
               #!/bin/bash
               #bash custom_test.sh ${params.PRODUCT} ${params.PRICE}
               docker-compose build
-              #mkdir -p coverage
-              #docker-compose up -d mysql
-              #docker-compose up app-coverage
-              #docker cp app-coverage:/workdir/htmlcov/index.html .
-              #cat index.html
+              mkdir -p coverage
+              docker-compose up -d mysql
+              docker-compose up app-coverage
+              docker cp app-coverage:/workdir/htmlcov/index.html .
+              cat index.html
               """
               }
               //publishHTML (target : [allowMissing: false,
