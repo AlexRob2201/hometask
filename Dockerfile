@@ -1,10 +1,16 @@
-FROM ubuntu:22.04
+FROM node:14
 
-RUN apt update && apt install python3 python3-pip -y && pip3 install mysql-connector-python
+WORKDIR /app
 
-RUN mkdir -p /workdir
-COPY src /workdir
+COPY package*.json ./
 
-WORKDIR /workdir
+RUN npm install
 
-ENTRYPOINT [ "python3", "shop.py" ]
+COPY . .
+
+# Expose the port the app runs on
+EXPOSE 3000
+
+ENTRYPOINT ["npm"]
+# Define the command to run the app
+CMD ["start"]
